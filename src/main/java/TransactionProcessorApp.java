@@ -143,6 +143,24 @@ public class TransactionProcessorApp {
     public Map<String, Amount> getAccountMap() {
         return accountToMoney;
     }
+
+    public static void main(String[] args) {
+        System.out.println("Hello World!");
+
+        String[] transactions = {
+            "1010064447770000100000",  // deposit 100000 to 444777
+            "1010064447770000050000",  // deposit 50000 to 444777
+            "1020064447770000020000",  // withdraw 20000 from 444777
+            "2010064447770612345670000010000"  // transfer 10000 from 444777 to 1234567
+        };
+
+        TransactionProcessorApp app = new TransactionProcessorApp();
+        app.processTransactions(transactions);
+
+        System.out.println("\nFinal Balances:");
+        app.getAccountMap().forEach((account, amt) ->
+            System.out.println("  " + account + ": " + amt.getTotalAmount()));
+    }
 }
 
 
